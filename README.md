@@ -1,5 +1,5 @@
 # RTM
-Real-time map providing OPENCV compatible images. NOT HTML BASED
+Real-time geographic map providing OPENCV compatible images. NOT HTML BASED
 
 USERS should add a tile directory while using this library and carefully set the parameters, for example, the FPS since this controls the update rate of the loading process. 
 
