@@ -271,15 +271,15 @@ class Map(object):
 
         if self.dlat != self.dlatn:
             if self.dlat < self.dlatn:
-                self.dlat += (self.dlatn - self.dlat) / 10
+                self.dlat += (self.dlatn - self.dlat) / self.fps
             else:
-                self.dlat -= (self.dlat - self.dlatn) / 10
+                self.dlat -= (self.dlat - self.dlatn) / self.fps
 
         if self.dlon != self.dlonn:
             if self.dlon < self.dlonn:
-                self.dlon += (self.dlonn - self.dlon) / 10
+                self.dlon += (self.dlonn - self.dlon) / self.fps
             else:
-                self.dlon -= (self.dlon - self.dlonn) / 10
+                self.dlon -= (self.dlon - self.dlonn) / self.fps
     def THREAD_CHECKAVAILIBLE(self):
         while True:
             self.checkavailible(self.coors)
