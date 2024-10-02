@@ -296,28 +296,30 @@ class Map(object):
 
 
 if __name__ == '__main__':
-    lat, lon = (45.53456, -73.62705)
-    main = Map((lat, lon), 17, (512, 512), (2048, 2048), ifdl=False)  #1536
-    main.addmark((45.50044294292274, -73.69398002956565), data="CAR", name="CAR1")
-    main.addmark((45.49870725445081, -73.69409357606255), data="CAR", name="CAR2")
-    main.addmark((45.49852033652044, -73.69336204593444), data="CAR", name="CAR3")
+    lat, lon = (LON, LAT)
+    main = Map((lat, lon), 17, (512, 512), (2048, 2048), ifdl=False)   # (COORDINATES, ZOOM-START, SHOW_MAP_SIZE, LOAD_MAP_SIZE, DO_DOWNLOAD?)
+
+    # EXAMPLES OF ADDING A MARK:
+    # main.addmark((LON, LAT), data="CAR", name="CAR1")
+    # main.addmark((LON, LAT), data="CAR", name="CAR2")
+    # main.addmark((LON, LAT), data="CAR", name="CAR3")
 
     while True:
-        # for i in range(0, 314):
-        #     i *= 0.1
-        with open("./test.csv") as file:
+        with open("./test.csv") as file:  # USE CUSTOM GPS DATA
             coors = csv.reader(file, delimiter="\n")
             for coor in coors:
                 lat, lon = float(coor[0].split(",")[0]), float(coor[0].split(",")[1])
                 main.clearmark()
                 main.replot()
-                main.addmark((lat, lon), data="CRT")
+                main.addmark((lat, lon), data="CURRENT LOCATION")
                 main.plot()
                 # img = main.center((lat+np.random.uniform(low=-0.00001, high=0.00001), lon+np.random.uniform(low=-0.00001, high=0.00001)))
+                
                 img = main.center((lat, lon))
-                img = main.MAP["map"]
                 cv2.imshow(" ", img)
                 cv2.waitKey(10)
+                
             main.zoomout()
+            # main.zoomin()
     # _ = map.update()
     # cv2.imshow("", _)
